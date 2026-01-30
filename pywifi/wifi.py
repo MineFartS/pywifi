@@ -33,7 +33,7 @@ class PyWiFi:
         
         self._logger = logging.getLogger('pywifi')
 
-    def interfaces(self):
+    def interfaces(self) -> list[Interface]:
         """Collect the available wlan interfaces."""
 
         self._ifaces = []

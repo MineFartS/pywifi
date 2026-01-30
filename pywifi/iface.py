@@ -3,9 +3,9 @@
 
 """Implement Interface for manipulating wifi devies."""
 
+from .profile import Profile
 import platform
 import logging
-
 
 if platform.system().lower() == 'windows':
     from . import _wifiutil_win as wifiutil
@@ -45,7 +45,7 @@ class Interface:
 
         self._wifi_ctrl.scan(self._raw_obj)
 
-    def scan_results(self):
+    def scan_results(self) -> list[Profile]:
         """Return the scan result."""
         
         bsses = self._wifi_ctrl.scan_results(self._raw_obj)
