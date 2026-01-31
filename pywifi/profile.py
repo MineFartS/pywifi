@@ -21,6 +21,8 @@ class Profile():
         self.signal = None
         self.freq = None
 
+        self.percent: int = None
+
     def process_akm(self):
 
         if len(self.akm) > 1:

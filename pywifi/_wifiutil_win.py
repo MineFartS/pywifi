@@ -304,6 +304,10 @@ class WifiUtil():
                     network.freq = bsses[j].ulChCenterFrequency
                     network.auth = auth_alg
                     network.akm = akm
+
+                    p = (2 * (bsses[j].lRssi + 100))
+                    network.percent = max(min(p, 100), 0)
+
                     network_list.append(network)
 
         return network_list
