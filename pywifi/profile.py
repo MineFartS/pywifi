@@ -18,6 +18,9 @@ class Profile():
         self.bssid = None
         self.key = None
 
+        self.signal = None
+        self.freq = None
+
     def process_akm(self):
 
         if len(self.akm) > 1:

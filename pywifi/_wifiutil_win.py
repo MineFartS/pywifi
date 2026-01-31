@@ -396,7 +396,7 @@ class WifiUtil():
         
         return params
 
-    def network_profile_name_list(self, obj):
+    def network_profile_name_list(self, obj) -> list[str]:
         """Get AP profile names."""
 
         profile_list = pointer(WLAN_PROFILE_INFO_LIST())
@@ -415,7 +415,7 @@ class WifiUtil():
 
         return profile_name_list
 
-    def network_profiles(self, obj):
+    def network_profiles(self, obj) -> list[Profile]:
         """Get AP profiles."""
 
         profile_name_list = self.network_profile_name_list(obj)
