@@ -1,26 +1,26 @@
-#!/usr/bin/env python3
-# vim: set fileencoding=utf-8
+from ctypes import pointer, POINTER, cast
+from .interface import Interface
+from _ctypes import _Pointer
+from .struct import (
+    WLAN_INTERFACE_INFO_LIST,
+    WLAN_INTERFACE_INFO
+)
+from typing import Generator
 
-"""
-pywifi - a cross-platform wifi library.
+def Interfaces() -> Generator[Interface]:
 
+    _ifaces = pointer(WLAN_INTERFACE_INFO_LIST())
 
-This library is made for manipulating wifi device on varient platforms.
-"""
+    interfaces: _Pointer[WLAN_INTERFACE_INFO] = cast(
+        _ifaces.contents.InterfaceInfo,
+        POINTER(WLAN_INTERFACE_INFO)
+    )
 
-import logging
+    for i in range(0, _ifaces.contents.dwNumberOfItems):
+        
+        _iface = interfaces[i]
 
-from . import const 
-from .profile import Profile
-from .wifi import PyWiFi
-
-
-def set_loglevel(level=logging.NOTSET):
-
-    format_pattern = "%(name)s %(asctime)s %(levelname)s %(message)s"
-    logging.basicConfig(format=format_pattern)
-    logger = logging.getLogger('pywifi')
-    logger.setLevel(level)
-
-
-set_loglevel()
+        yield Interface(
+            guid = _iface.InterfaceGuid,
+            name = _iface.strInterfaceDescription
+        )

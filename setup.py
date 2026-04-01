@@ -6,15 +6,13 @@ setup(
     
     name = 'pywifi',
 
-    version = '2.1',
+    version = '2.2',
 
-    author = 'Phil H & Jiang Sheng-Jhih',
+    author = 'Phil H',
 
     author_email = '',
 
     description = "A cross-platform module for manipulating WiFi devices.",
-
-    long_description = open('README.md', 'r').read(),
 
     long_description_content_type = "text/markdown",
 
@@ -26,9 +24,7 @@ setup(
 
     url = 'https://github.com/minefarts/pywifi', 
 
-    license = 'MIT',
-
-    download_url = 'https://github.com/minefarts/pywifi/archive/master.zip', 
+    download_url = 'https://github.com/minefarts/pywifi/archive/master.zip',
 
     classifiers = [
         'Intended Audience :: Developers',
@@ -41,6 +37,6 @@ setup(
         'Programming Language :: Python :: 3.7',
     ],
 
-    keywords = ['wifi', 'wireless', 'Linux', 'Windows']
+    keywords = ['wifi', 'wireless', 'Windows']
 
 )
