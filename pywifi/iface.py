@@ -45,22 +45,28 @@ class Interface:
 
         self._wifi_ctrl.scan(self._raw_obj)
 
+    @property
     def scan_results(self) -> list[Profile]:
         """Return the scan result."""
         
-        bsses = self._wifi_ctrl.scan_results(self._raw_obj)
+        try:
+        
+            bsses = self._wifi_ctrl.scan_results(self._raw_obj)
 
-        if self._logger.isEnabledFor(logging.INFO):
-            for bss in bsses:
-                self._logger.info("Find bss:")
-                self._logger.info("\tbssid: %s", bss.bssid)
-                self._logger.info("\tssid: %s", bss.ssid)
-                self._logger.info("\tfreq: %d", bss.freq)
-                self._logger.info("\tauth: %s", bss.auth)
-                self._logger.info("\takm: %s", bss.akm)
-                self._logger.info("\tsignal: %d", bss.signal)
+            if self._logger.isEnabledFor(logging.INFO):
+                for bss in bsses:
+                    self._logger.info("Find bss:")
+                    self._logger.info("\tbssid: %s", bss.bssid)
+                    self._logger.info("\tssid: %s", bss.ssid)
+                    self._logger.info("\tfreq: %d", bss.freq)
+                    self._logger.info("\tauth: %s", bss.auth)
+                    self._logger.info("\takm: %s", bss.akm)
+                    self._logger.info("\tsignal: %d", bss.signal)
 
-        return bsses
+            return bsses
+        
+        except ValueError:
+            return []
 
     def add_network_profile(self, params):
         """Add the info of the AP for connecting afterward."""
