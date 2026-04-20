@@ -19,6 +19,7 @@ class Profile():
         self.key: None|str = None
         self.signal = None
         self.freq = None
+        self.percent: None|int = None
 
     def process_akm(self):
 
