@@ -10,13 +10,15 @@ class Profile():
 
     def __init__(self):
 
-        self.id = 0
+        self.id: int = 0
         self.auth = AUTH_ALG_OPEN
         self.akm = [AKM_TYPE_NONE]
         self.cipher = CIPHER_TYPE_NONE
-        self.ssid = None
+        self.ssid: None|str = None
         self.bssid = None
-        self.key = None
+        self.key: None|str = None
+        self.signal = None
+        self.freq = None
 
     def process_akm(self):
 
