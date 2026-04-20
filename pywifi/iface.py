@@ -91,6 +91,8 @@ class Interface:
                 self._logger.info("\tcipher: %s", profile.cipher)
 
         return profiles
+    
+    profiles = property(network_profiles)
 
     def connect(self, params):
         """Connect to the specified AP."""
