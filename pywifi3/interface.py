@@ -1,9 +1,8 @@
 from ctypes import (
-    _NamedFuncPointer, pointer, byref, POINTER, 
+    pointer, byref, POINTER, 
     cast, c_void_p, windll
 )
 from ctypes.wintypes import HANDLE, DWORD
-from _ctypes import _CArgObject
 from typing import Generator
 from .struct import (
     WLAN_AVAILABLE_NETWORK_LIST,
@@ -31,7 +30,7 @@ class Interface:
     def scan(self) -> None:
         """Trigger the wifi interface to scan."""
 
-        func: _NamedFuncPointer = windll.wlanapi.WlanScan
+        func = windll.wlanapi.WlanScan
 
         func.argtypes = [
             HANDLE, 
