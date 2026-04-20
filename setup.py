@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     
-    name = 'pywifi2',
+    name = 'pywifi3',
 
     version = '1.1',
 
