@@ -93,7 +93,17 @@ class Interface:
 
         return profiles
     
-    profiles = property(network_profiles)
+    _scan_started = False
+
+    @property
+    def profiles(self):
+
+        _profiles: list[Profile] = self.network_profiles()
+
+        if not self._scan_started:
+            self.scan()
+
+        return self.network_profiles() + self.scan_results()
 
     def connect(self, params):
         """Connect to the specified AP."""
