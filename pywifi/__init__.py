@@ -1,26 +1,11 @@
-#!/usr/bin/env python3
-# vim: set fileencoding=utf-8
+from philh_myftp_biz.classtools import singleton
+from pywifi.wifi import PyWiFi as __PyWiFi
+from .iface import Interface
 
-"""
-pywifi - a cross-platform wifi library.
+@singleton
+class PyWiFi(__PyWiFi):
 
+    @property
+    def interfaces(self) -> list[Interface]:
+        return super().interfaces()
 
-This library is made for manipulating wifi device on varient platforms.
-"""
-
-import logging
-
-from . import const 
-from .profile import Profile
-from .wifi import PyWiFi
-
-
-def set_loglevel(level=logging.NOTSET):
-
-    format_pattern = "%(name)s %(asctime)s %(levelname)s %(message)s"
-    logging.basicConfig(format=format_pattern)
-    logger = logging.getLogger('pywifi')
-    logger.setLevel(level)
-
-
-set_loglevel()
