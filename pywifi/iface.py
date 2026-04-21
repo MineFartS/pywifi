@@ -44,14 +44,18 @@ class Interface:
     def scan(self):
         """Trigger the wifi interface to scan."""
 
-        self._scan_started = True
+        if not self._scan_started:
 
-        self._logger.info("iface '%s' scans", self.name())
+            self._scan_started = True
 
-        self._wifi_ctrl.scan(self._raw_obj)
+            self._logger.info("iface '%s' scans", self.name())
+
+            self._wifi_ctrl.scan(self._raw_obj)
 
     def scan_results(self) -> list[Profile]:
         """Return the scan result."""
+
+        self.scan()
         
         bsses = self._wifi_ctrl.scan_results(self._raw_obj)
 
@@ -96,14 +100,6 @@ class Interface:
                 self._logger.info("\tcipher: %s", profile.cipher)
 
         return profiles
-
-    @property
-    def profiles(self) -> list[Profile]:
-
-        if not self._scan_started:
-            self.scan()
-
-        return self.network_profiles() + self.scan_results()
 
     def connect(self, params):
         """Connect to the specified AP."""
