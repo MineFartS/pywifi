@@ -5,7 +5,10 @@ setup(
     version = '1.1',
     description = "A cross-platform module for manipulating WiFi devices.",
     packages = find_packages(),
-    install_requires = ['philh_myftp_biz', 'pywifi'],
+    install_requires = [
+        'philh_myftp_biz==2026.04.20', 
+        'pywifi'
+    ],
     python_requires = ">=3.14",
     url = 'https://github.com/minefarts/pywifi2', 
     license = 'MIT',
