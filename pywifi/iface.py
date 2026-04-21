@@ -34,6 +34,8 @@ class Interface:
         self._wifi_ctrl = wifiutil.WifiUtil()
         self._logger = logging.getLogger('pywifi')
 
+        self._scan_started = False
+
     def name(self):
         """"Get the name of the wifi interfacce."""
 
@@ -41,6 +43,8 @@ class Interface:
 
     def scan(self):
         """Trigger the wifi interface to scan."""
+
+        self._scan_started = True
 
         self._logger.info("iface '%s' scans", self.name())
 
@@ -92,13 +96,9 @@ class Interface:
                 self._logger.info("\tcipher: %s", profile.cipher)
 
         return profiles
-    
-    _scan_started = False
 
     @property
-    def profiles(self):
-
-        _profiles: list[Profile] = self.network_profiles()
+    def profiles(self) -> list[Profile]:
 
         if not self._scan_started:
             self.scan()
