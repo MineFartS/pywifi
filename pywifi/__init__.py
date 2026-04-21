@@ -7,5 +7,5 @@ class PyWiFi(__PyWiFi):
 
     @property
     def interfaces(self) -> list[Interface]:
-        return super().interfaces()
+        return [Interface(i) for i in super().interfaces()]
 
